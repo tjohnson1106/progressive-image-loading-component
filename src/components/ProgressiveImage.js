@@ -23,8 +23,25 @@ class ProgressiveImage extends Component {
 
     return (
       <View style={styles.container}>
-        <Image {...props} source={thumbnailSource} style={style} />
-        <Image {...props} source={source} style={[style.imageOverlay, style]} />
+        <Animated.Image
+          {...props}
+          source={thumbnailSource}
+          style={[style, { opacity: this.thumbnailAnimated }]}
+          onLoad={this.handleThumbnailLoad}
+          blurRadius={1}
+        />
+        <Animated.Image
+          {...props}
+          source={source}
+          style={[
+            styles.imageOverlay,
+            {
+              opacity: this.imageAnimated
+            },
+            style
+          ]}
+          onLoad={this.onImageLoad}
+        />
       </View>
     );
   }
