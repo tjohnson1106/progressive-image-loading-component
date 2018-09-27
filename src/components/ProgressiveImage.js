@@ -1,7 +1,23 @@
 import React from "react";
-import { Image, View, StyleSheet } from "react-native";
+import { Image, View, StyleSheet, Animated } from "react-native";
 
 class ProgressiveImage extends Component {
+  thumbnailAnimated = new Animated.Value(0);
+
+  imageAnimated = new Animated.Value(0);
+
+  handleThumbnailLoad = () => {
+    Animated.timing(this.thumbnailAnimated, {
+      toValue: 1
+    }).start();
+  };
+
+  onImageLoad = () => {
+    Animated.timing(this.imageAnimated, {
+      toValue: 1
+    }).start();
+  };
+
   render() {
     const { thumbnailSource, source, style, ...props } = this.props;
 
